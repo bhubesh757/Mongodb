@@ -1,0 +1,16 @@
+{
+  "name": "mongotab",
+  "version": "1.0.0",
+  "description": "fun project for youtube",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "bhubesh",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^8.3.0",
+    "mongoose": "^5.11.18",
+    "nodemon": "^2.0.7"
+  }
+}
