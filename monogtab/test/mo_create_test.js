@@ -31,7 +31,7 @@ describe('Read Tests' , () => {
 
     beforeEach(
         (done) => {
-            reader = Student({name : 'Reader'})
+            reader = new Student({name : 'Reader'})
             reader.save()
             // using a then catch 
                 .then(() => {
@@ -49,4 +49,48 @@ describe('Read Tests' , () => {
             })
         }
     )
+})
+
+// All delete options
+
+
+describe("Delete Tests" , () => {
+    let deleter;
+
+    beforeEach(() => {
+        deleter = new Student({name : 'Deleter'})
+        deleter.save()
+        .then(() => done())
+    })
+    it('a delete test for deleter' , (done) => {
+        Student.findByIdAndDelete(deleter._id)
+        .then(()  => Student.findOne({  name: 'Deleter' }))
+        .then((student) => {
+            assert(student === null);
+            done();
+        })
+})
+
+})
+
+// All Updates Tests
+
+describe('Update Tests' , () => {
+    let updater;
+
+    beforeEach((done) => {
+        updater = new Student({name : 'Updater'})
+        updater.save()
+        .then(() => done())
+    })
+    it('Set an Save Test' , () => {
+        updater.set('name ' , 'upUpdater');
+        updater.save()
+            .then(() => Student.find({}))
+            .then((students) => {
+                assert(students[0].name !== 'Updater');
+                assert(students[0].name === 'upUpdater');
+
+            })
+    })
 })
